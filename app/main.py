@@ -5,7 +5,7 @@ from fastapi import FastAPI, Request, WebSocket
 from fastapi.responses import HTMLResponse
 from starlette.templating import Jinja2Templates
 
-from settings import Settings
+from app.core.config import Settings
 
 camera = cv2.VideoCapture(0)
 
