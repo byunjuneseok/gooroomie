@@ -1,18 +1,13 @@
 import asyncio
 
 import cv2
-from fastapi import FastAPI, Request, WebSocket
-from fastapi.responses import HTMLResponse
-from starlette.templating import Jinja2Templates
+from fastapi import FastAPI, WebSocket
 
-from app.core.config import Settings
-
-camera = cv2.VideoCapture(0)
-
-templates = Jinja2Templates(directory="templates")
+from api.api import api_router
+from core.camera import camera
 
 app = FastAPI()
-settings = Settings()
+app.include_router(api_router)
 
 
 class ConnectedClients:
@@ -59,12 +54,6 @@ async def periodic_broadcast():
 async def schedule_periodic():
     loop = asyncio.get_event_loop()
     loop.create_task(periodic_broadcast())
-
-
-@app.get('/', response_class=HTMLResponse)
-async def index(request: Request):
-    websocket_endpoint = f'ws://{settings.base_url}/ws'
-    return templates.TemplateResponse("index.html", {'request': request, 'websocket_endpoint': websocket_endpoint})
 
 
 @app.websocket('/ws')
