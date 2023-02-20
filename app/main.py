@@ -1,5 +1,4 @@
 import asyncio
-from asyncio import Queue
 
 import cv2
 from fastapi import FastAPI, Request, WebSocket
@@ -8,7 +7,6 @@ from starlette.templating import Jinja2Templates
 
 from settings import Settings
 
-queue = Queue()
 camera = cv2.VideoCapture(0)
 
 templates = Jinja2Templates(directory="templates")
