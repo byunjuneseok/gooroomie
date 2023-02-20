@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  web:
+    platform: linux/amd64
+    build:
+      context: ./app
+    volumes:
+      - .:/app
+      - ./:/webcam
+      - /dev/video0:/dev/video0
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    ports:
+      - 28080:8080
+    env_file: .env
+    restart: always
+    environment:
+      - DISPLAY=unix$DISPLAY
+    privileged: true
