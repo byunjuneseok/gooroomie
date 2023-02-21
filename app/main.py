@@ -16,7 +16,7 @@ def get_bytes():
     ret, frame = camera.read()
     if not ret:
         return None
-    ret, buffer = cv2.imencode('.jpg', frame)
+    ret, buffer = cv2.imencode('.webp', frame, [cv2.IMWRITE_WEBP_QUALITY, 100])
     frame = buffer.tobytes()
     return frame
 
