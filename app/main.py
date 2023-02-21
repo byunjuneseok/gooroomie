@@ -5,6 +5,7 @@ from fastapi import FastAPI, WebSocket
 
 from api.api import api_router
 from core.camera import camera
+from core.config import settings
 from core.websocket import connected_clients
 
 app = FastAPI()
@@ -24,7 +25,7 @@ async def periodic_broadcast():
     while True:
         if connected_clients.clients:
             await connected_clients.broadcast(message=get_bytes())
-        await asyncio.sleep(1/5)
+        await asyncio.sleep(1/settings.frame_rate)
 
 
 @app.on_event("startup")
@@ -37,4 +38,4 @@ async def schedule_periodic():
 async def broadcast(websocket: WebSocket):
     await connected_clients.add_client(websocket)
     while True:
-        await asyncio.sleep(1)
+        await asyncio.sleep(settings.health_check_interval)
