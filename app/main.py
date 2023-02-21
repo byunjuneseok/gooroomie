@@ -24,7 +24,7 @@ async def periodic_broadcast():
     while True:
         if connected_clients.clients:
             await connected_clients.broadcast(message=get_bytes())
-        await asyncio.sleep(1/24)
+        await asyncio.sleep(1/5)
 
 
 @app.on_event("startup")
@@ -37,4 +37,4 @@ async def schedule_periodic():
 async def broadcast(websocket: WebSocket):
     await connected_clients.add_client(websocket)
     while True:
-        await asyncio.sleep(1/24)
+        await asyncio.sleep(1)
