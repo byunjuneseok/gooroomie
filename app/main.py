@@ -5,33 +5,10 @@ from fastapi import FastAPI, WebSocket
 
 from api.api import api_router
 from core.camera import camera
+from core.websocket import connected_clients
 
 app = FastAPI()
 app.include_router(api_router)
-
-
-class ConnectedClients:
-
-    def __init__(self):
-        self.clients = []
-
-    async def add_client(self, client):
-        await client.accept()
-        self.clients.append(client)
-        print(f'Client {client} added, total clients: {len(self.clients)}')
-
-    def remove_client(self, client):
-        self.clients.remove(client)
-
-    async def broadcast(self, message=None):
-        for client in self.clients:
-            try:
-                await client.send_bytes(message)
-            except Exception:
-                self.remove_client(client)
-
-
-connected_clients = ConnectedClients()
 
 
 def get_bytes():
