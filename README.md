@@ -1,9 +1,13 @@
 # Gooroomie
 
-Broadcasting test with websocket.
+> Webcam to browser.
+
+Broadcasting application with webRTC. 
+
 
 ## TO-DO
-- [ ] Replace image with video streaming.
+- [x] Replace image with video streaming.
+- [ ] Add audio streaming.
 - [ ] Add authentication.
 - [ ] Split server and client code.
 - [ ] Provision at aws with fully repeatable IaC.

@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "gooroomie"
+version = "0.1.0"
+description = ""
+authors = ["byunjuneseok <byunjuneseok@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11"
+opencv-python = "^4.7.0.68"
+fastapi = "0.105.0"
+websockets = "^10.4"
+uvicorn = "0.24.0.post1"
+jinja2 = "^3.1.2"
+gunicorn = "21.2.0"
+dependency-injector = "^4.41.0"
+aiortc = "^1.6.0"
+pydantic = "^2.5.2"
+pyyaml = "^6.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.13.2"
+ruff = "^0.1.8"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+
+[tool.isort]
+src_paths = ["app"]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+float_to_top = true
+line_length = 120
+ensure_newline_before_comments = true
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+force_alphabetical_sort_within_sections = true

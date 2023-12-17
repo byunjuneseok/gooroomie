@@ -1,4 +1,4 @@
-FROM python:3.10.10-slim-buster
+FROM python:3.11.3-slim-buster
 
 # Install gcc.
 RUN apt-get update \
@@ -14,4 +14,4 @@ RUN pip install poetry --upgrade
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-interaction --no-root
 
-ENTRYPOINT ["gunicorn", "-c", "python:gunicorn_config", "-k", "uvicorn.workers.UvicornWorker", "main:app"]
+ENTRYPOINT ["gunicorn", "-c", "python:gunicorn_config", "-k", "uvicorn.workers.UvicornWorker", "app.api:create_app"]

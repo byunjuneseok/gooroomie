@@ -1,0 +1,4 @@
+webrtc:
+  peer_connection_manager:
+    audio_codec: ${WEBRTC_PEER_CONNECTION_MANAGER_AUDIO_CODEC:audio/opus}
+    video_codec: ${WEBRTC_PEER_CONNECTION_MANAGER_VIDEO_CODEC:video/H264}
