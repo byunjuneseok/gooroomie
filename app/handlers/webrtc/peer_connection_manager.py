@@ -35,7 +35,7 @@ class WebRTCPeerConnectionManager:
         transceiver.setCodecPreferences([codec for codec in codecs if codec.mimeType == forced_codec])
 
     def add_track(self, peer_connection: PeerConnection):
-        audio_track, video_track = self.webcam_streamer.create_local_tracks(False)
+        audio_track, video_track = self.webcam_streamer.create_local_tracks()
         if audio_track:
             audio_sender = peer_connection.addTrack(audio_track)
             self._force_codec(peer_connection, audio_sender, self.audio_codec)

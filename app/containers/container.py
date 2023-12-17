@@ -10,10 +10,12 @@ class Container(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(packages=["applications"])
     config = providers.Configuration(yaml_files=["config.yml"])
 
+    audio_media_relay = providers.Singleton(MediaRelay)
     video_media_relay = providers.Singleton(MediaRelay)
     webcam_streamer = providers.Singleton(
         WebcamStreamer,
         video_media_relay=video_media_relay,
+        audio_media_relay=audio_media_relay,
     )
     webrtc_peer_connection_manager = providers.Singleton(
         WebRTCPeerConnectionManager,
